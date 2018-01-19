@@ -39,7 +39,7 @@ for(var n = 1; n <= nProducts; n++){
   
   try {
     // Item count
-    var _itemCount = document.xpath(`//*[@id="item_${n}_qty"]`);
+    var _itemCount = document.xpath(`//*[@id="cartItems"]/div[${n}]/div/div[2]/div[1]/table[1]/tbody/tr/td[2]/div/input`);
     itemCount = _itemCount[0].value;
     console.log(itemCount);
   } catch(e) {
