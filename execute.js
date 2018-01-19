@@ -26,25 +26,45 @@ document.xpath = function(expression) {
 
 var productArray = [];
 for(var n = 1; n <= nProducts; n++){
-  // Name
-  var _name = document.xpath(`//*[@id="cartItems"]/div[${n}]/div/div[2]/div[1]/table[1]/tbody/tr/td[1]/div`);
-  var name = _name[0].innerText;
-  console.log(name);
-  // Item count
-  var _itemCount = document.xpath(`//*[@id="item_${n}_qty"]`);
-  var itemCount = _itemCount[0].value;
-  console.log(itemCount);
-  // Price
-  var _price = document.xpath(`//*[@id="cartItems"]/div[${n}]/div/div[2]/div[2]`);
-  var priceStr = _price[0].innerText.replace(' 円（税込）', '').replace(',', '');
-  console.log(priceStr);
-  // Detail
-  var _detail = document.xpath(`//*[@id="cartItems"]/div[${n}]/div/div[2]/div[1]/table[2]/tbody/tr[3]/td/a[1]`);
-  var itemLink = _detail[0].getAttribute('href');
-  console.log(itemLink);
+  var name, itemCount, priceStr, itemLink;
 
-  // Push data
-  productArray.push([name, itemCount, priceStr, itemLink]);
+  try {
+    // Name
+    var _name = document.xpath(`//*[@id="cartItems"]/div[${n}]/div/div[2]/div[1]/table[1]/tbody/tr/td[1]/div`);
+    name = _name[0].innerText;
+    console.log(name);
+  } catch(e) {
+    alert(e);
+  }
+  
+  try {
+    // Item count
+    var _itemCount = document.xpath(`//*[@id="item_${n}_qty"]`);
+    itemCount = _itemCount[0].value;
+    console.log(itemCount);
+  } catch(e) {
+    alert(e);
+  }
+
+  try {
+    // Price
+    var _price = document.xpath(`//*[@id="cartItems"]/div[${n}]/div/div[2]/div[2]`);
+    priceStr = _price[0].innerText.replace(' 円（税込）', '').replace(',', '');
+    console.log(priceStr);
+  } catch(e) {
+    alert(e);
+  }
+  try {
+    // Detail
+    var _detail = document.xpath(`//*[@id="cartItems"]/div[${n}]/div/div[2]/div[1]/table[2]/tbody/tr[3]/td/a[1]`);
+    itemLink = _detail[0].getAttribute('href');
+    console.log(itemLink);
+  } catch(e) {
+    alert(e);
+  }
+
+   // Push data
+   productArray.push([name, itemCount, priceStr, itemLink]);
 }
 
 
